@@ -321,6 +321,8 @@ target_link_libraries(
     v8_libbase
     v8_libsampler
     v8_torque_generated
+    v8_compiler
+    v8_initializers
   PUBLIC
     v8-bytecodes-builtin-list
 )
