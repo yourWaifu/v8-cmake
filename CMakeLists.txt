@@ -645,12 +645,6 @@ target_link_libraries(v8_libbase
 #
 # bytecode_builtins_list_generator
 #
-v8_generate_builtins_list(${PROJECT_BINARY_DIR}/generated)
-
-target_include_directories(v8-bytecodes-builtin-list
-  INTERFACE
-    ${PROJECT_BINARY_DIR}/generated)
-
 
 add_executable(
   bytecode_builtins_list_generator
@@ -658,6 +652,14 @@ add_executable(
   ${D}/src/interpreter/bytecode-operands.cc
   ${D}/src/interpreter/bytecodes.cc
 )
+
+v8_generate_builtins_list(${PROJECT_BINARY_DIR}/generated
+  bytecode_builtins_list_generator)
+
+target_include_directories(v8-bytecodes-builtin-list
+  INTERFACE
+    ${PROJECT_BINARY_DIR}/generated)
+
 
 target_include_directories(bytecode_builtins_list_generator PRIVATE ${D})
 target_link_libraries(bytecode_builtins_list_generator v8_libbase)
